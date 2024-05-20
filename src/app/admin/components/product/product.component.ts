@@ -14,6 +14,8 @@ export class ProductComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.showSpinner(SpinnerType.BallAtom)
+
+
   }
 
 }
