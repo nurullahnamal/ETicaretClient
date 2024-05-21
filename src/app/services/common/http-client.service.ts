@@ -19,7 +19,7 @@ export class HttpClientService {
         if (requestParameters.fullEndPoint)
           url = requestParameters.fullEndPoint;
         else
-          url = `${this.url(requestParameters)}${id ? `/${id}` : ""}`;
+          url = `${this.url(requestParameters)}${id ? `/${id}` : ""}${requestParameters.queryString ? `?${requestParameters.queryString}` : ""}`;
 
         return this.httpclient.get<T>(url,{headers:requestParameters.headers});
     }
@@ -30,9 +30,10 @@ export class HttpClientService {
     if (requestParameters.fullEndPoint)
       url=requestParameters.fullEndPoint;
     else
-      url=`${this.url(requestParameters)}`
+      url = `${this.url(requestParameters)}${requestParameters.queryString ? `?${requestParameters.queryString}` : ""}`
 
     return this.httpclient.post<T>(url,body,{headers:requestParameters.headers});
+
     }
 
   put<T>(requestParameters: Partial<RequestParameters>, body: Partial<T>): Observable<T>{
@@ -40,7 +41,7 @@ export class HttpClientService {
     if (requestParameters.fullEndPoint)
       url = requestParameters.fullEndPoint;
     else
-      url = `${this.url(requestParameters)}`
+      url = `${this.url(requestParameters)}${requestParameters.queryString ? `?${requestParameters.queryString}` : ""}`;
     return this.httpclient.put<T>(url, body, { headers: requestParameters.headers });
 
 
@@ -51,7 +52,7 @@ export class HttpClientService {
     if (requestParameters.fullEndPoint)
       url = requestParameters.fullEndPoint;
     else
-      url = `${this.url(requestParameters)}${id}`; // Eğik çizgiyi buradan kaldırın
+      url = `${this.url(requestParameters)}${id}${requestParameters.queryString ? `?${requestParameters.queryString}` : ""}`;
     return this.httpclient.delete<T>(url, { headers: requestParameters.headers });
   }
 
@@ -60,6 +61,8 @@ export class HttpClientService {
 export class RequestParameters{
   controller?:string;
   action?:string;
+  queryString?:string;
+
   headers?:HttpHeaders;
   baseUrl?:string;
   fullEndPoint?:string;
