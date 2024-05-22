@@ -46,6 +46,6 @@ export class ProductService {
       controller: "products"
     }, id);
 
-    await firstValueFrom(deleteObservable);
+     await firstValueFrom(deleteObservable);
   }
 }
