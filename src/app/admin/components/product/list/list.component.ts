@@ -36,10 +36,6 @@ export class ListComponent extends BaseComponent  implements OnInit{
     this.paginator.length = allProducts.totalCount;
   }
 
-  //delete(id, event) {
-  //  const img: HTMLImageElement = event.srcElement;
-  //  $(img.parentElement.parentElement).fadeOut(2000);
-  //}
 
   async pageChanged() {
     await this.getProduct();
