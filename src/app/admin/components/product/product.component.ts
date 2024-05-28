@@ -24,4 +24,5 @@ export class ProductComponent extends BaseComponent implements OnInit {
   createdProduct(create_product:Create_Product){
   this.listComponents.getProduct();
   }
+
 }
